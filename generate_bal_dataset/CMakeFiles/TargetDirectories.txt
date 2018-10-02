@@ -1,0 +1,1 @@
+/home/ddornellas/Desktop/Programming/test_ceres/simple_bundle_adjuster/generate_bal_dataset/CMakeFiles/generate_bal_dataset.dir
