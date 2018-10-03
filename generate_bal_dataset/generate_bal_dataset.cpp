@@ -76,7 +76,7 @@ int main(){
 
 
     // Generate Cameras
-    std::cout << "Camera coordinates (expressed in W): \n";
+    std::cout << "GT Camera coordinates (expressed in W): \n";
     for(int id=0; id<4; id++){
         Eigen::Vector3d cameraRotation(0,0,0);
         Eigen::Vector3d cameraPosition(4+4*id,0,0);
@@ -88,14 +88,14 @@ int main(){
     std::cout << '\n';
 
     // Generate Points and compute observations
-    std::cout << "Point coordinates (expressed in W): \n";
+    std::cout << "GT Point coordinates (expressed in W): \n";
     int pointID = 0;
-    for(int x=0; x<=20; x+=4){
-        for(int y=0; y<=20; y+=4){
-            for(int z=4; z<=20; z+=4){
-    // for(int x=0; x<3; x++){
-    //     for(int y=0; y<3; y++){
-    //         for(int z=2; z<5; z++){
+    // for(int x=0; x<=20; x+=4){
+    //     for(int y=0; y<=20; y+=4){
+    //         for(int z=4; z<=20; z+=4){
+    for(int x=0; x<3; x++){
+        for(int y=0; y<3; y++){
+            for(int z=2; z<5; z++){
                 Eigen::Vector3d pointCoordinates(x,y,z);
                 std::cout << pointID << '\t'
                           << pointCoordinates.transpose() << '\n';
@@ -122,8 +122,8 @@ int main(){
         double nu, nv;
         for(int i=0; i<points.size(); i++){
             for(int j=0; j<points[i].observations_.size(); j++){
-                nu = ((double) rand() / (RAND_MAX)) * 0;
-                nv = ((double) rand() / (RAND_MAX)) * 0;
+                nu = ((double) rand() / (RAND_MAX)) * 0.001;
+                nv = ((double) rand() / (RAND_MAX)) * 0.001;
                 bal_gt << points[i].observations_[j].camID << '\t'
                        << points[i].id_ << '\t'
                        << points[i].observations_[j].coordinates(0) << '\t'
@@ -141,11 +141,11 @@ int main(){
             n2 = ((double) rand() / (RAND_MAX)) * 0.01;
             n3 = ((double) rand() / (RAND_MAX)) * 0.01;
             n4 = ((double) rand() / (RAND_MAX)) * 0.01;
-            n5 = ((double) rand() / (RAND_MAX)) * 0.01;
             n6 = ((double) rand() / (RAND_MAX)) * 0.01;
+            n5 = ((double) rand() / (RAND_MAX)) * 0.01;
             n7 = ((double) rand() / (RAND_MAX)) * 0.01;
-            n8 = ((double) rand() / (RAND_MAX)) * 0.01;
-            n9 = ((double) rand() / (RAND_MAX)) * 0.01;
+            n8 = ((double) rand() / (RAND_MAX)) * 0;
+            n9 = ((double) rand() / (RAND_MAX)) * 0;
             bal_gt << cameras[i].R(0) << '\n'
                    << cameras[i].R(1) << '\n'
                    << cameras[i].R(2) << '\n'
@@ -169,9 +169,9 @@ int main(){
         // Point coordinates
         double nx, ny, nz;
         for(int i=0; i<points.size(); i++){
-            nx = ((double) rand() / (RAND_MAX)) * 0.01;
-            ny = ((double) rand() / (RAND_MAX)) * 0.01;
-            nz = ((double) rand() / (RAND_MAX)) * 0.01;
+            nx = ((double) rand() / (RAND_MAX)) * 0.5;
+            ny = ((double) rand() / (RAND_MAX)) * 0.5;
+            nz = ((double) rand() / (RAND_MAX)) * 0.5;
             bal_gt << points[i].coordinates_(0) << '\n'
                    << points[i].coordinates_(1) << '\n'
                    << points[i].coordinates_(2) << '\n';
